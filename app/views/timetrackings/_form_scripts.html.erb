@@ -1,5 +1,13 @@
 
 <script>
+
+  var timeInterval = setInterval(startTime, 1000);
+
+  <% unless timetracking.id.blank? %>
+    document.getElementById("form-submit").innerHTML = "Check-out";
+    document.getElementById("checkin").innerHTML = "You started your work at <%= Time.at(timetracking.checkin/1000).strftime("%Y-%m-%d %I:%M:%S") %>" ;
+  <% end %>
+  
   function startTime() {
     var date = new Date();
     var y = date.getFullYear();
@@ -19,11 +27,9 @@
     return i;
   }
 
-  var timeInterval = setInterval(startTime, 1000);
-  <% unless timetracking.id.blank? %>
-    document.getElementById("form-submit").innerHTML = "Check-out";
-    document.getElementById("checkin").innerHTML = "You started your work at <%= Time.at(timetracking.checkin/1000).strftime("%Y-%m-%d %I:%M:%S") %>" ;
-  <% end %>
+  function clearTimer(){
+   clearInterval(timeInterval);
+  }
 
   function submitForm() {
     <% if timetracking.id.blank? %>
@@ -41,9 +47,5 @@
         document.getElementById("form-submit").innerHTML = "Check-in";
         document.getElementById('timetracking_form').submit();
     <% end %>
-  }
-
-  function clearTimer(){
-   clearInterval(timeInterval);
   }
 </script>

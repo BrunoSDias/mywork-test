@@ -27,7 +27,7 @@ class TimetrackingsController < ApplicationController
         @inside = true
         respond_to do |format|
           if @timetracking.save
-            format.html { redirect_to new_timetracking_path(id: @timetracking.id) }
+            format.html { render :new, id: @timetracking.id }
             format.json { render :show, status: :created, location: @timetracking }
           else
             format.html { render :new }
