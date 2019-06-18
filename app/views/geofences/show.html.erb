@@ -1,0 +1,26 @@
+<%= flash_notice %>
+
+<div class="show-container">
+
+  <div class="buttons-container">
+    <%= link_to 'Back', geofences_path, class: 'btn btn-info' %>
+    <%= link_to 'Edit', edit_geofence_path(@geofence), class: 'btn btn-warning' %>
+  </div>
+
+  <dl>
+    <dt>Latitude:</dt>
+    <dd>
+      <%= @geofence.latitude %>
+    </dd>
+
+    <dt>Longitude:</dt>
+    <dd>
+      <%= @geofence.longitude %>
+    </dd>
+
+    <dt>Radius (in meters):</dt>
+    <dd>
+      <%= @geofence.radius %>
+    </dd>
+  </dl>
+</div>

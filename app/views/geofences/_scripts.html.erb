@@ -1,0 +1,57 @@
+  <script>
+    var map_container = document.getElementById('map');
+
+    function initMap() {
+      var map = new google.maps.Map(map_container, {
+        zoom: 4,
+        center: {lat: 0 , lng: 0}
+      });
+
+      map.addListener('click', function(e) {
+        placeMarkerAndPanTo(e.latLng, map);
+        document.getElementById('geofence_latitude').value = e.latLng.lat();
+        document.getElementById('geofence_longitude').value = e.latLng.lng();
+      });
+    }
+
+    function placeMarkerAndPanTo(latLng, map) {
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+      });
+
+      map.panTo(latLng);
+    }
+
+    function setCoords(latt,lngg){
+      latt = parseFloat(document.getElementById('geofence_latitude').value);
+      lngg = parseFloat(document.getElementById('geofence_longitude').value);
+
+      var map = new google.maps.Map(map_container, {
+        zoom: 8,
+        center: {lat: latt, lng: lngg}
+      });
+
+      map.addListener('click', function(e) {
+        placeMarkerAndPanTo(e.latLng, map);
+        document.getElementById('geofence_latitude').value = e.latLng.lat();
+        document.getElementById('geofence_longitude').value = e.latLng.lng();
+      });
+
+      placeMarkerAndPanTo({lat: latt, lng: lngg}, map)
+    }
+
+    // function drawCircle(map, center, radius){
+    //   var cityCircle = new google.maps.Circle({
+    //     strokeColor: '#FF0000',
+    //     strokeOpacity: 0.5,
+    //     strokeWeight: 2,
+    //     fillColor: '#FF0000',
+    //     fillOpacity: 0.35,
+    //     map: map,
+    //     center: ,
+    //     radius: 
+    //   });
+    // }
+  </script>
+

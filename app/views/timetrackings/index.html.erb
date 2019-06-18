@@ -1,0 +1,35 @@
+<%= flash_notice %>
+
+<h1 class="title-class">Timetrackings List</h1>
+
+<%= link_to 'Geofences', geofences_path, class: 'btn btn-warning pull-right m-buttons' %>
+<%= link_to 'New Timetracking', new_timetracking_path, class: 'btn btn-success pull-right m-buttons' %>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Check-In</th>
+      <th>Duration</th>
+      <th>Check-Out</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @timetrackings.each do |timetracking| %>
+      <tr>
+        <th scope="row"><%= timetracking.id %></th>
+        <td><%= timetracking.latitude %></td>
+        <td><%= timetracking.longitude %></td>
+        <td><%= Time.at(timetracking.checkin.to_f/1000).strftime("%Y-%m-%d %I:%M:%S") %></td>
+        <td><%= Time.at(timetracking.duration.to_f/1000).strftime("%H:%M:%S") %></td>
+        <td><%= Time.at(timetracking.checkout.to_f/1000).strftime("%Y-%m-%d %I:%M:%S") %></td>
+        <td><%= link_to 'Show', timetracking, class: 'btn btn-primary' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

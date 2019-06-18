@@ -1,0 +1,33 @@
+<%= flash_notice %>
+
+<h1 class= 'title-class'>Geofences List</h1>
+
+<%= link_to 'Timetrackings', timetrackings_path, class: 'btn btn-warning pull-right m-buttons' %>
+<%= link_to 'New Geofence', new_geofence_path, class: 'btn btn-success pull-right m-buttons' %>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Radius</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @geofences.each do |geofence| %>
+      <tr>
+        <th scope="row"><%= geofence.id %></th>
+        <td><%= geofence.latitude %></td>
+        <td><%= geofence.longitude %></td>
+        <td><%= geofence.radius %></td>
+        <td><%= link_to 'Show', geofence, class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_geofence_path(geofence), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', geofence, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

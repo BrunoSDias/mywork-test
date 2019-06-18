@@ -1,0 +1,42 @@
+// Place all the styles related to the geofences controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.geofence-container{
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+
+  .btn-back{
+    top: 20px;
+    position: absolute;
+    right: 0;
+  }
+
+  .btn-show{
+    top: 20px;
+    position: absolute;
+    left: 0;
+  }
+
+
+  #geofence-form{
+    padding: 10px;
+
+    input{
+      text-align: center;
+
+      &[type=submit]{
+        background-color: #fff;
+        display: inline-block;
+        padding: 6px 12px;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        border: 1px solid #ccc;
+        color: #333;
+      }
+    }
+  }
+}

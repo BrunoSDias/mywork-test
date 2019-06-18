@@ -1,0 +1,16 @@
+<div class="timetracking-container">
+  <h1 class="title-class">Timetracking</h1>
+
+  <div id="clock-container">
+    <p id='clock'></p>
+  </div>
+
+  <div id="checkin-container">
+    <p id='checkin'></p>
+  </div>
+
+  <%= flash_error %>
+  <%= render 'form', timetracking: @timetracking %>
+ 
+  <%= link_to 'Admin Area', timetrackings_path, onclick: 'clearTimer()', class: 'btn btn-warning admin-area-class' %>
+</div>

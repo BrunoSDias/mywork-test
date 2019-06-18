@@ -1,0 +1,49 @@
+
+<script>
+  function startTime() {
+    var date = new Date();
+    var y = date.getFullYear();
+    var mo = date.getMonth() + 1;
+    var d = date.getDate();
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var s = date.getSeconds();
+    mo = checkTime(mo);
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML = y + "/" + mo + "/" + d + "<br><br>" + h + ":" + m + ":" + s;
+  }
+
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+  }
+
+  var timeInterval = setInterval(startTime, 1000);
+  <% unless timetracking.id.blank? %>
+    document.getElementById("form-submit").innerHTML = "Check-out";
+    document.getElementById("checkin").innerHTML = "You started your work at <%= Time.at(timetracking.checkin/1000).strftime("%Y-%m-%d %I:%M:%S") %>" ;
+  <% end %>
+
+  function submitForm() {
+    <% if timetracking.id.blank? %>
+      navigator.geolocation.getCurrentPosition(function(position){
+        var checkintime = new Date().getTime();
+        document.getElementById("timetracking_latitude").value = position.coords.latitude;
+        document.getElementById("timetracking_longitude").value = position.coords.longitude;
+        document.getElementById("timetracking_checkin").value = checkintime;
+        document.getElementById('timetracking_form').submit();
+      });
+    <% else %>
+        var checkouttime = new Date().getTime();
+        document.getElementById("timetracking_duration").value = checkouttime - <%= timetracking.checkin %>;
+        document.getElementById("timetracking_checkout").value = checkouttime;
+        document.getElementById("form-submit").innerHTML = "Check-in";
+        document.getElementById('timetracking_form').submit();
+    <% end %>
+  }
+
+  function clearTimer(){
+   clearInterval(timeInterval);
+  }
+</script>
