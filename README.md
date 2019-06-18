@@ -5,8 +5,8 @@
 * Rails versão 5.1.7.
 ## Instruções de Construção
 ### Comandos
-`rake: db:create` - Para gerar a base de dados dentro do projeto.
-`rake: db:migrate` - Para migrar as tabelas do projeto para dentro do banco de dados.
+`* rake: db:create` - Para gerar a base de dados dentro do projeto.
+`* rake: db:migrate` - Para migrar as tabelas do projeto para dentro do banco de dados.
 ## Instruções de uso
 * Geofences
   * New/Create - Antes de mais nada é necessário criar uma novo objeto geofence com sua geolocalização atual para que seja possível realizar o `Check-in` no sistema de controle de ponto. É possível gerar geopontos através das caixas de texto ou através do clique no mapa.
