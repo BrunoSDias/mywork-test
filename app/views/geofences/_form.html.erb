@@ -2,7 +2,7 @@
 
 <%= form_with(model: geofence, local: true, id: 'geofence-form') do |form| %>
   <% if geofence.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
       <h2><%= pluralize(geofence.errors.count, "error") %> prohibited this geofence from being saved:</h2>
 
       <ul>
@@ -15,17 +15,17 @@
 
   <div class="form-group">
     <%= form.label :latitude %>
-    <%= form.text_field :latitude, id: :geofence_latitude, class: 'geo-class form-control', onchange: 'setCoords()' %>
+    <%= form.text_field :latitude, id: :geofence_latitude, class: 'geo-class form-control', onchange: 'setCoords()', required: true %>
   </div>
 
   <div class="form-group">
     <%= form.label :longitude %>
-    <%= form.text_field :longitude, id: :geofence_longitude, class: 'geo-class form-control', onchange: 'setCoords()' %>
+    <%= form.text_field :longitude, id: :geofence_longitude, class: 'geo-class form-control', onchange: 'setCoords()', required: true %>
   </div>
 
   <div class="form-group">
     <%= form.label :radius, "Radius (in meters)" %>
-    <%= form.text_field :radius, id: :geofence_radius, class: 'form-control' %>
+    <%= form.text_field :radius, id: :geofence_radius, class: 'form-control', onchange: 'setCoords()', required: true %>
   </div>
 
   <div class="form-group submit-container">

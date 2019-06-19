@@ -1,7 +1,6 @@
-<%= flash_notice %>
 
 <div class="show-container">
-
+<%= flash_notice %>
   <div class="buttons-container">
     <%= link_to 'Back', geofences_path, class: 'btn btn-info' %>
     <%= link_to 'Edit', edit_geofence_path(@geofence), class: 'btn btn-warning' %>
@@ -22,5 +21,13 @@
     <dd>
       <%= @geofence.radius %>
     </dd>
+
+
+    <dt>Place:</dt>
+    <dd>
+      <div id="map"></div>
+    </dd>
   </dl>
 </div>
+
+<%= render 'shared/scripts', object: @geofence %>

@@ -1,35 +1,30 @@
   <script>
     var map_container = document.getElementById('map');
+    var cmarker = "";
+    var ccircle = ""
 
     function initMap() {
-      var map = new google.maps.Map(map_container, {
-        zoom: 4,
-        center: {lat: 0 , lng: 0}
-      });
-
-      map.addListener('click', function(e) {
-        placeMarkerAndPanTo(e.latLng, map);
-        document.getElementById('geofence_latitude').value = e.latLng.lat();
-        document.getElementById('geofence_longitude').value = e.latLng.lng();
-      });
+      setCoords()
     }
 
     function placeMarkerAndPanTo(latLng, map) {
+      clearMarkersCircles()
       var marker = new google.maps.Marker({
         position: latLng,
         map: map
       });
 
+      cmarker = marker;
+      ccircle = drawCircle(map, latLng, parseFloat(document.getElementById('geofence_radius').value))
       map.panTo(latLng);
     }
 
-    function setCoords(latt,lngg){
-      latt = parseFloat(document.getElementById('geofence_latitude').value);
-      lngg = parseFloat(document.getElementById('geofence_longitude').value);
+    function setCoords(){
+      var position = verifyStart();
 
       var map = new google.maps.Map(map_container, {
         zoom: 8,
-        center: {lat: latt, lng: lngg}
+        center: position
       });
 
       map.addListener('click', function(e) {
@@ -38,20 +33,40 @@
         document.getElementById('geofence_longitude').value = e.latLng.lng();
       });
 
-      placeMarkerAndPanTo({lat: latt, lng: lngg}, map)
+      placeMarkerAndPanTo({lat: position.lat, lng: position.lng}, map)
     }
 
-    // function drawCircle(map, center, radius){
-    //   var cityCircle = new google.maps.Circle({
-    //     strokeColor: '#FF0000',
-    //     strokeOpacity: 0.5,
-    //     strokeWeight: 2,
-    //     fillColor: '#FF0000',
-    //     fillOpacity: 0.35,
-    //     map: map,
-    //     center: ,
-    //     radius: 
-    //   });
-    // }
+    function clearMarkersCircles() {
+      if (!cmarker == "")
+        cmarker.setMap(null);
+      if (!ccircle == "")
+        ccircle.setMap(null);
+    }
+
+    function drawCircle(map, center, radius){
+      var options = {
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.5,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: map,
+        center: center,
+        radius: radius
+      }
+      return cityCircle = new google.maps.Circle(options);
+    }
+
+    function verifyStart(){
+      if (document.getElementById('geofence_latitude').value != ""){
+        latt = parseFloat(document.getElementById('geofence_latitude').value);
+        lngg = parseFloat(document.getElementById('geofence_longitude').value);
+      }
+      else{
+        latt = 0;
+        lngg = 0;
+      }
+      return {lat: latt, lng: lngg}
+    }
   </script>
 

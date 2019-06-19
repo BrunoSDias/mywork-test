@@ -1,0 +1,17 @@
+
+<script>
+  var map_container = document.getElementById('map');
+  var latLng = {lat: <%= object.latitude %> , lng: <%= object.longitude %>}
+
+  function initMap() {
+    var map = new google.maps.Map(map_container, {
+      zoom: 6,
+      center: latLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+  }
+</script>
