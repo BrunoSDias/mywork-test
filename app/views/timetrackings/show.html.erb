@@ -1,53 +1,59 @@
-<%= flash_notice %>
 
-<div class="show-container">
-  <div class="buttons-container">
-    <%= link_to 'Back', timetrackings_path, class: 'btn btn-warning' %>
-  </div>
+<section class="show-container">
 
-  <dl>
-    <dt>Latitude:</dt>
-    <dd>
-      <%= @timetracking.latitude %>
-    </dd>
+  <header>
+    <%= flash_notice %>
+    <div class="buttons-container">
+      <%= link_to 'Back', timetrackings_path, class: 'btn btn-warning' %>
+    </div>
+  </header>
 
-    <dt>Longitude:</dt>
-    <dd>
-      <%= @timetracking.longitude %>
-    </dd>
+  <main>
+    <dl>
+      <dt>Latitude:</dt>
+      <dd>
+        <%= @timetracking.latitude %>
+      </dd>
 
-    <dt>Check-in:</dt>
-    <dd>
-      <%= Time.at(@timetracking.checkin/1000).strftime("%Y-%m-%d %I:%M:%S") %>
-    </dd>
+      <dt>Longitude:</dt>
+      <dd>
+        <%= @timetracking.longitude %>
+      </dd>
 
-    <dt>Check-out:</dt>
-    <dd>
-      <% if @timetracking.checkout.present? %>
-      <%= Time.at(@timetracking.checkout/1000).strftime("%Y-%m-%d %I:%M:%S") %>
-    <% end %>
-    </dd>
+      <dt>Check-in:</dt>
+      <dd>
+        <%= Time.at(@timetracking.checkin/1000).strftime("%Y-%m-%d %I:%M:%S") %>
+      </dd>
 
-    <dt>Duration:</dt>
-    <dd>
-      <% if @timetracking.duration.present? %>
-      <%= Time.at(@timetracking.duration/1000).strftime("%H:%M:%S") %>
-    <% end %>
-    </dd>
+      <dt>Check-out:</dt>
+      <dd>
+        <% if @timetracking.checkout.present? %>
+        <%= Time.at(@timetracking.checkout/1000).strftime("%Y-%m-%d %I:%M:%S") %>
+      <% end %>
+      </dd>
 
-    <dt>Comment:</dt>
-    <dd>
-      <% if @timetracking.comment.present? %>
-      <%= @timetracking.comment %>
-    <% end %>
-    </dd>
+      <dt>Duration:</dt>
+      <dd>
+        <% if @timetracking.duration.present? %>
+        <%= Time.at(@timetracking.duration/1000).strftime("%H:%M:%S") %>
+      <% end %>
+      </dd>
 
-    <dt>Place:</dt>
-    <dd>
-      <div id="map"></div>
-    </dd>
-  </dl>
-</div>
+      <dt>Comment:</dt>
+      <dd>
+        <% if @timetracking.comment.present? %>
+        <%= @timetracking.comment %>
+      <% end %>
+      </dd>
+
+      <dt>Place:</dt>
+      <dd>
+        <div id="map"></div>
+      </dd>
+    </dl>
+  </main>
+  
+</section>
 
 <%= render 'shared/scripts', object: @timetracking %>
 

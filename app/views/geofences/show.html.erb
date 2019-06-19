@@ -1,33 +1,39 @@
 
-<div class="show-container">
-<%= flash_notice %>
-  <div class="buttons-container">
-    <%= link_to 'Back', geofences_path, class: 'btn btn-info' %>
-    <%= link_to 'Edit', edit_geofence_path(@geofence), class: 'btn btn-warning' %>
-  </div>
+<section class="show-container">
 
-  <dl>
-    <dt>Latitude:</dt>
-    <dd>
-      <%= @geofence.latitude %>
-    </dd>
+  <header>
+    <%= flash_notice %>
+    <div class="buttons-container">
+      <%= link_to 'Back', geofences_path, class: 'btn btn-info' %>
+      <%= link_to 'Edit', edit_geofence_path(@geofence), class: 'btn btn-warning' %>
+    </div>
+  </header>
 
-    <dt>Longitude:</dt>
-    <dd>
-      <%= @geofence.longitude %>
-    </dd>
+  <main>
+    <dl>
+      <dt>Latitude:</dt>
+      <dd>
+        <%= @geofence.latitude %>
+      </dd>
 
-    <dt>Radius (in meters):</dt>
-    <dd>
-      <%= @geofence.radius %>
-    </dd>
+      <dt>Longitude:</dt>
+      <dd>
+        <%= @geofence.longitude %>
+      </dd>
+
+      <dt>Radius (in meters):</dt>
+      <dd>
+        <%= @geofence.radius %>
+      </dd>
 
 
-    <dt>Place:</dt>
-    <dd>
-      <div id="map"></div>
-    </dd>
-  </dl>
-</div>
+      <dt>Place:</dt>
+      <dd>
+        <div id="map"></div>
+      </dd>
+    </dl>
+  </main>
+  
+</section>
 
 <%= render 'shared/scripts', object: @geofence %>

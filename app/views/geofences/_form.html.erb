@@ -15,22 +15,24 @@
 
   <div class="form-group">
     <%= form.label :latitude %>
-    <%= form.text_field :latitude, id: :geofence_latitude, class: 'geo-class form-control', onchange: 'setCoords()', required: true %>
+    <%= form.text_field :latitude, id: :geofence_latitude, class: 'geo-class form-control', onchange: 'setCoords()' %>
   </div>
 
   <div class="form-group">
     <%= form.label :longitude %>
-    <%= form.text_field :longitude, id: :geofence_longitude, class: 'geo-class form-control', onchange: 'setCoords()', required: true %>
+    <%= form.text_field :longitude, id: :geofence_longitude, class: 'geo-class form-control', onchange: 'setCoords()' %>
   </div>
 
   <div class="form-group">
     <%= form.label :radius, "Radius (in meters)" %>
-    <%= form.text_field :radius, id: :geofence_radius, class: 'form-control', onchange: 'setCoords()', required: true %>
+    <%= form.text_field :radius, id: :geofence_radius, class: 'form-control', onchange: 'setCoords()' %>
   </div>
 
-  <div class="form-group submit-container">
-    <%= form.submit  %>
+  <div class="form-group">
+    <button onclick="return validateForm()" id='form-submit', class="btn btn-default">Create geofence</button>
   </div>
 <% end %>
+
+
 
 <%= render 'scripts', geofence: geofence %>

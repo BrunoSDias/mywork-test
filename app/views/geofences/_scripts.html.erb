@@ -68,5 +68,46 @@
       }
       return {lat: latt, lng: lngg}
     }
+
+    function validateForm(){
+      lat = parseFloat(document.getElementById("geofence_latitude").value);
+      lng = parseFloat(document.getElementById("geofence_longitude").value);
+
+      var messages = "";
+
+      if (isNaN(lat) || isNaN(lng)){
+        messages += 'All the fields must be filled'
+      }
+      else{
+        if (lng > 180.00000000000000)
+          messages += "You have exceeded the valid longitude limit. <br>"
+        else if (lng < -180.00000000000000)
+          messages += "You are below the minimum of longitude <br>"
+        if (lat > 85.05112878)
+          messages += "You have exceeded the valid latitude limit. <br>"
+        else if (lat < -85.05112878)
+          messages += "You are below the minimum of latitude <br>"
+      }
+
+      if (messages == ""){
+        document.getElementById('geofence-form').submit();
+        return true;
+      }
+      else{
+        bootbox.alert({
+          message: messages,
+          buttons:{
+            ok: {
+              className: 'btn btn-danger'
+            }
+          }
+        });
+        return false;
+      }
+    }
+    <% unless geofence.id.blank? %>
+      document.getElementById("form-submit").innerHTML = "Update geofence";
+    <% end %>
+
   </script>
 

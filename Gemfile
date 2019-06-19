@@ -32,6 +32,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-boostrap', '3.3.4'
   # Jquery Mask
   gem 'rails-assets-jquery-mask'
+  # Bootbox
+  gem 'rails-assets-bootbox'
 end
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

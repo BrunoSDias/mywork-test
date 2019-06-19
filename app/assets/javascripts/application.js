@@ -14,6 +14,7 @@
 //= require jquery
 //= require boostrap
 //= require jquery-mask
+//= require bootbox
 //= require_self
 //= require_tree .
 
